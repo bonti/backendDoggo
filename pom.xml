@@ -13,9 +13,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>petmanager</name> 
 	<description>Demo project for Spring Boot Endurance</description>
-
+	<packaging>
+	 war
+	</packaging>
 	<properties>
-		 
+		 <java.version>1.8</java.version>
 	</properties>
 
 	<dependencies>
@@ -23,6 +25,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+		<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-tomcat</artifactId>
+  <scope>provided</scope>
+ </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -140,7 +147,27 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+				 
+				<excludeArtifactIds> spring-boot-devtools</excludeArtifactIds> 
+			 </configuration>
 			</plugin>
+			
+			<plugin>
+		        <groupId>com.heroku.sdk</groupId>
+		        <artifactId>heroku-maven-plugin</artifactId>
+		        <version>3.0.3</version>
+		      </plugin>
+		      <plugin>    
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+            <fork>true</fork>
+              <executable>C:\Program Files\Java\jdk1.8.0_261\bin\javac</executable>
+        </configuration>
+        </plugin>
+    
 		</plugins>
 	</build>
 

@@ -73,7 +73,7 @@ public class DogServiceImpl extends BaseService implements DogService{
 	@Override
 	public DogDetailResponse getDogDetailById(long id) {
 		Optional<Dog> dog = dogRepository.findById(id);
-		if(dog.isEmpty())  
+		if(!dog.isPresent())  
 		{
 			throw new EnterpriseException("No Dog found", HttpStatus.NOT_FOUND);
 		}
@@ -92,7 +92,7 @@ public class DogServiceImpl extends BaseService implements DogService{
 		validateEditRequest(request);
 		
 		 Optional<Dog> dog = dogRepository.findById(id);
-		  if(dog.isEmpty()) {  
+		  if(!dog.isPresent()) {  
 			 logger.error("Doggo does not exist"+id);
 			 throw new EnterpriseException("Dog does not exist as per request", HttpStatus.BAD_REQUEST);  
 		 } 
@@ -202,7 +202,7 @@ public class DogServiceImpl extends BaseService implements DogService{
 		
 		 Optional<User> user = userRepository.findById(userId);
 		 //Alternatively, the userId could be got from the authentication principal and we would not pass the user id as a request path variable.
-		 if(user.isEmpty()) {  
+		 if(!user.isPresent()) {  
 			 logger.error("user to be associated with new dog does not exist"+userId);
 			 throw new EnterpriseException("User does not exist as per request", HttpStatus.BAD_REQUEST);  
 		 }

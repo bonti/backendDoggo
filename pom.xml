@@ -14,7 +14,7 @@
 	<name>petmanager</name> 
 	<description>Demo project for Spring Boot Endurance</description>
 	<packaging>
-	 war
+	 jar
 	</packaging>
 	<properties>
 		 <java.version>1.8</java.version>

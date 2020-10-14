@@ -11,11 +11,11 @@
 	<groupId>com.example</groupId>
 	<artifactId>petmanager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>petmanager</name>
+	<name>petmanager</name> 
 	<description>Demo project for Spring Boot Endurance</description>
 
 	<properties>
-		<java.version>11</java.version>
+		 
 	</properties>
 
 	<dependencies>

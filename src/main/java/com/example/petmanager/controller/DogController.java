@@ -81,9 +81,9 @@ public class DogController extends BaseController{
  			}
  		catch(Exception ex) {
  			if(ex.getClass() == EnterpriseException.class) {
- 				return new ResponseEntity(ex.getMessage(), ((EnterpriseException) ex).getStatus());
+ 				return new ResponseEntity<String>(ex.getMessage(), ((EnterpriseException) ex).getStatus());
  				}
- 				return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
+ 				return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
  		} 
     }
 	 	

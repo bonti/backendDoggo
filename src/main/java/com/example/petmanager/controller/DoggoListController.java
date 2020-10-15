@@ -19,11 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.petmanager.util.PortalConstants;
 import com.example.petmanager.exception.EnterpriseException;
 import com.example.petmanager.response.bean.DogListResponse;
-<<<<<<< HEAD
+ 
 import com.example.petmanager.response.bean.ResponseWrapper;
 import com.example.petmanager.response.bean.StatusBean;
-=======
->>>>>>> a2095ff Removed ability to provide userid
+ 
 import com.example.petmanager.response.bean.UserInfo;
 import com.example.petmanager.service.DogService;;
  

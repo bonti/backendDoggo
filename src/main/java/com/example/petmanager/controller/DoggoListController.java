@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity; 
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
  
 import com.example.petmanager.util.PortalConstants;
 import com.example.petmanager.exception.EnterpriseException;
-import com.example.petmanager.response.bean.DogListResponse; 
+import com.example.petmanager.response.bean.DogListResponse;
+import com.example.petmanager.response.bean.UserInfo;
 import com.example.petmanager.service.DogService;;
  
  
@@ -28,9 +31,13 @@ public class DoggoListController extends BaseController{
 	@Autowired
 	private DogService dogService;
 	 
-	@GetMapping(value="/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> getDogsByUser(@PathVariable(value="userId") long userId,
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> getDogsByUser( 
 			@RequestHeader(value = PortalConstants.HEADER_AUTHORIZATION) String authentication) {		
+		
+		Authentication authenticationObj = SecurityContextHolder.getContext().getAuthentication();
+		long userId= Long.parseLong(((UserInfo)authenticationObj.getPrincipal()).getId());
+ 		
 		try {
 			 DogListResponse dogList = dogService.getDogsByUser(userId); 
 			return ResponseEntity.ok(dogList);

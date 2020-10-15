@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.petmanager.util.PortalConstants;
 import com.example.petmanager.exception.EnterpriseException;
 import com.example.petmanager.response.bean.DogListResponse;
+import com.example.petmanager.response.bean.ResponseWrapper;
+import com.example.petmanager.response.bean.StatusBean;
 import com.example.petmanager.response.bean.UserInfo;
 import com.example.petmanager.service.DogService;;
  
@@ -43,11 +45,14 @@ public class DoggoListController extends BaseController{
 			return ResponseEntity.ok(dogList);
 			}
 			catch(Exception ex) {
+			
 				if(ex.getClass() == EnterpriseException.class) {
-					return new ResponseEntity<String>(ex.getMessage(), ((EnterpriseException) ex).getStatus());
+					HttpStatus status = ((EnterpriseException) ex).getStatus(); 
+					StatusBean sb = StatusBean.getFailure( status,   ex.getMessage());
+					return new ResponseEntity(  new ResponseWrapper(sb), status);
 					}
-					return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
-
+					StatusBean sb = StatusBean.getFailure( HttpStatus.BAD_REQUEST,   ex.getMessage()); 
+					return new ResponseEntity( new ResponseWrapper(sb), HttpStatus.BAD_REQUEST); 
 			}
 	} 
 	  

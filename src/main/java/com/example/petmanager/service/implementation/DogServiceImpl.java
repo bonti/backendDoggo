@@ -207,9 +207,10 @@ public class DogServiceImpl extends BaseService implements DogService{
 			 throw new EnterpriseException("User does not exist as per request", HttpStatus.BAD_REQUEST);  
 		 }
 		 
-		 
+		 editDog.setUser(user.get());
 		 
 		 try {
+			 
 			 Dog savedDog=dogRepository.save(editDog);
 			 DogDetailResponse savedDogResponse = new DogDetailResponse(savedDog.getName(), savedDog.getHeight(), savedDog.getWeight(), savedDog.getBreed(), savedDog.getAge(), savedDog.getColor(), savedDog.getId());
 			 return savedDogResponse; 

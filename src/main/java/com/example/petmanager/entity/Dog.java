@@ -80,5 +80,15 @@ public String getColor() {
 public void setColor(String color) {
 	this.color = color;
 }
+
+public User getUser() {
+	return user;
+}
+
+public void setUser(User user) {
+	this.user = user;
+}
+
+
  
 }

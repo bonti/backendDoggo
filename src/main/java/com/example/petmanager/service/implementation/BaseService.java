@@ -62,13 +62,7 @@ public class BaseService {
 		} else {
 			responseWrapper = new ResponseWrapper(StatusBean.getSuccess(), beansLst);
 		}
-
-		if (responseWrapper != null) {
-			responseWrapper.setPageNumber(page.getPageNumber() + 1);
-			responseWrapper.setPageSize(page.getPageSize());
-			responseWrapper.setSortField(page.getSort().isSorted()?page.getSort().toString():"");
-			responseWrapper.setTotalRows(total);
-		}
+ 
 		return responseWrapper;
 	}
 	

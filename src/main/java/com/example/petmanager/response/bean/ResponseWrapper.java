@@ -19,12 +19,7 @@ public class ResponseWrapper {
 	@JsonProperty("responseStatus")
 	StatusBean statusBean;
 
-
-	Integer pageSize;
-	Long totalRows;
-	Integer pageNumber;
-	String sortOrder;
-	String sortField;
+ 
 
 	
 	/*
@@ -77,54 +72,5 @@ public class ResponseWrapper {
 	}
 
 
-	public Integer getPageSize() {
-		return pageSize;
-	}
-
-
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
-	}
-
-
-	public Long getTotalRows() {
-		return totalRows;
-	}
-
-
-	public void setTotalRows(Long totalRows) {
-		this.totalRows = totalRows;
-	}
-
-
-	public Integer getPageNumber() {
-		return pageNumber;
-	}
-
-
-	public void setPageNumber(Integer pageNumber) {
-		this.pageNumber = pageNumber;
-	}
-
-
-	public String getSortOrder() {
-		return sortOrder;
-	}
-
-
-	public void setSortOrder(String sortOrder) {
-		this.sortOrder = sortOrder;
-	}
-
-
-	public String getSortField() {
-		return sortField;
-	}
-
-
-	public void setSortField(String sortField) {
-		this.sortField = sortField;
-	}
-
-	
+	  
 }

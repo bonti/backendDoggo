@@ -96,14 +96,14 @@ public class DogController extends BaseController{
 	 * @param authentication
 	 * @return
 	 */
- 	@PutMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+ 	@PutMapping( produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> editDog( 
 		@Valid @RequestBody EditDogRequest editDogRequest, 
-		@PathVariable(value="id") long id,
+	 
 		@RequestHeader(value = PortalConstants.HEADER_AUTHORIZATION) String authentication) {
 
  		try {
- 			DogDetailResponse dogDetail = dogService.editDogDetail(editDogRequest, id); 
+ 			DogDetailResponse dogDetail = dogService.editDogDetail(editDogRequest, editDogRequest.getId()); 
  			return ResponseEntity.ok(dogDetail);
  			}
  		catch(Exception ex) {

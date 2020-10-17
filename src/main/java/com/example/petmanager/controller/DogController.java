@@ -24,6 +24,7 @@ import com.example.petmanager.request.bean.AddDogRequest;
 import com.example.petmanager.request.bean.EditDogRequest;
 import com.example.petmanager.response.bean.DogDetailResponse;
 import com.example.petmanager.response.bean.ResponseWrapper;
+import com.example.petmanager.response.bean.StatusBean;
 import com.example.petmanager.response.bean.UserInfo;
 import com.example.petmanager.service.DogService;
  
@@ -81,9 +82,12 @@ public class DogController extends BaseController{
  			}
  		catch(Exception ex) {
  			if(ex.getClass() == EnterpriseException.class) {
- 				return new ResponseEntity<String>(ex.getMessage(), ((EnterpriseException) ex).getStatus());
- 				}
- 				return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+				HttpStatus status = ((EnterpriseException) ex).getStatus(); 
+				StatusBean sb = StatusBean.getFailure( status,   ex.getMessage());
+				return new ResponseEntity(  new ResponseWrapper(sb), status);
+				}
+				StatusBean sb = StatusBean.getFailure( HttpStatus.BAD_REQUEST,   ex.getMessage()); 
+				return new ResponseEntity( new ResponseWrapper(sb), HttpStatus.BAD_REQUEST); 
  		} 
     }
 	 	
@@ -108,9 +112,12 @@ public class DogController extends BaseController{
  			}
  		catch(Exception ex) {
  			if(ex.getClass() == EnterpriseException.class) {
- 				return new ResponseEntity(ex.getMessage(), ((EnterpriseException) ex).getStatus());
- 				}
- 				return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
+				HttpStatus status = ((EnterpriseException) ex).getStatus(); 
+				StatusBean sb = StatusBean.getFailure( status,   ex.getMessage());
+				return new ResponseEntity(  new ResponseWrapper(sb), status);
+				}
+				StatusBean sb = StatusBean.getFailure( HttpStatus.BAD_REQUEST,   ex.getMessage()); 
+				return new ResponseEntity( new ResponseWrapper(sb), HttpStatus.BAD_REQUEST); 
 
  		}  
     }
